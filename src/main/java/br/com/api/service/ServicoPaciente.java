@@ -26,7 +26,7 @@ public class ServicoPaciente {
 
                 try {
                     // Passa o objeto para o DAO realizar a inserção no banco de dados
-                    // e recebe o id gerado no banco de dados
+                    // e recebe o  id gerado no banco de dados
                     int idPaciente = DAOPaciente.inserir(paciente);
 
                     // Define o status code do HTTP

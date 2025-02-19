@@ -25,7 +25,7 @@ public class DAOPaciente {
             comando.setString(1, paciente.getNome());
             comando.setString(2, paciente.getCpf());
             comando.setString(3, paciente.getSexo());
-            comando.setDate(4, paciente.getData_nascimento());
+            comando.setDate(4, paciente.getDataNascimento());
 
             // Envia o SQL para o banco de dados
             comando.executeUpdate();
@@ -145,7 +145,7 @@ public class DAOPaciente {
             comando.setString(1, paciente.getNome());
             comando.setString(2, paciente.getCpf());
             comando.setString(3, paciente.getSexo());
-            comando.setDate(4, paciente.getData_nascimento());
+            comando.setDate(4, paciente.getDataNascimento());
             comando.setInt(5, paciente.getId());
 
             // Executa a atualização e armazena o retorno do banco com a quantidade de linhas atualizadas

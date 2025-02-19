@@ -2,6 +2,8 @@ package br.com.api.routes;
 
 import br.com.api.service.ServicoUsuario;
 import br.com.api.service.ServicoPaciente;
+import br.com.api.service.ServicoImunizacao;
+
 import spark.Spark;
 
 public class Rotas {
@@ -21,7 +23,18 @@ public class Rotas {
         Spark.get("/paciente/consultar", ServicoPaciente.consultarTodosPacientes());
         Spark.put("/paciente/alterar/:id", ServicoPaciente.alterarPaciente());
         Spark.delete("/paciente/excluir/:id", ServicoPaciente.excluirPaciente());
-        
+
+        // Rotas de imunização
+        Spark.post("/imunizacao/inserir", ServicoImunizacao.cadastrarImunizacao());
+        Spark.get("/imunizacao/consultar/:id", ServicoImunizacao.consultarImunizacaoPorId());
+        Spark.get("/imunizacao/consultar", ServicoImunizacao.consultarTodasImunizacoes());
+        Spark.get("/imunizacao/consultar/paciente/:id", ServicoImunizacao.consultarImunizacoesPorIdPaciente());
+        Spark.get("/imunizacao/consultar/paciente/:id/aplicacao/:dt_ini/:dt_fim", ServicoImunizacao.consultarImunizacoesPorIdPacienteEIntervalo());
+        Spark.put("/imunizacao/alterar/:id", ServicoImunizacao.alterarImunizacao());
+        Spark.delete("/imunizacao/excluir/:id", ServicoImunizacao.excluirImunizacao());
+        Spark.delete("/imunizacao/excluir/paciente/:id", ServicoImunizacao.excluirImunizacoesPorIdPaciente());
+
+      
         //TO DO: Para criar novas rotas, basta adicionar novas linhas seguindo o padrao abaixo, 
         //onde XXXX e o metodo http (post, get, put ou delete), yyyyyy a url que define a rota
         //e ZZZZZ o metodo a ser executado quando a rota for acionada

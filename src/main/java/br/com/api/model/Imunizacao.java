@@ -23,7 +23,7 @@ public class Imunizacao {
         this.profissionalAplicador = profissionalAplicador;
     }
 
-    // Getters e Setters
+    
     public int getId() {
         return id;
     }

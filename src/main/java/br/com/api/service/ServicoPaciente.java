@@ -55,7 +55,7 @@ public class ServicoPaciente {
                 int id;
 
                 try {
-                    // Extrai o parâmetro id da URL (header HTTP), e converte para inteiro
+                   
                     id = Integer.parseInt(request.params(":id"));
 
                     // Busca o paciente no banco de dados pela id
@@ -73,7 +73,7 @@ public class ServicoPaciente {
                         return "{\"message\": \"Nenhum paciente encontrado com este ID.\"}";
                     }
                 } catch (NumberFormatException e) {
-                    // Define o HTTP status code
+                    
                     response.status(400); // 400 Requisição incorreta, foi fornecido um id que não pode ser convertido para inteiro
                     return "{\"message\": \"ID fornecido está no formato incorreto.\"}";
                 }
@@ -93,11 +93,11 @@ public class ServicoPaciente {
 
                 // Se o arraylist estiver vazio
                 if (pacientes.isEmpty()) {
-                    response.status(200); // 209
+                    response.status(200); 
                     return "{\"message\": \"Nenhum paciente encontrado no banco de dados.\"}";
                 } else {
                     // Se não estiver vazio devolve o arraylist convertido para JSON
-                    response.status(200); // 200 Ok
+                    response.status(200); 
                     return converteJson.writeValueAsString(pacientes);
                 }
             }
@@ -151,13 +151,13 @@ public class ServicoPaciente {
             @Override
             public Object handle(Request request, Response response) throws Exception {
                 try {
-                    // Extrai o parâmetro id da URL (header HTTP), e converte para inteiro
+                   
                     int id = Integer.parseInt(request.params(":id"));
 
-                    // Envia o id a ser excluído para o DAO e recebe a quantidade de linhas excluídas
+                 
                     int linhasExcluidas = DAOPaciente.excluirPorID(id);
 
-                    // Se a quantidade de linhas for maior que 0 significa que o paciente existia no banco de dados
+                   
                     if (linhasExcluidas > 0) {
                         response.status(200); // Exclusão com sucesso
                         return "{\"message\": \"Paciente com id " + id + " foi excluído com sucesso.\"}";
@@ -166,7 +166,7 @@ public class ServicoPaciente {
                         response.status(209); // Id não encontrado
                         return "{\"message\": \"Paciente com id " + id + " não foi encontrado no banco de dados.\"}";
                     }
-                } catch (NumberFormatException e) { // Alguma exceção na conversão do id fornecido na URL
+                } catch (NumberFormatException e) { 
                     response.status(400);
                     return "{\"message\": \"ID fornecido está no formato incorreto.\"}";
                 }

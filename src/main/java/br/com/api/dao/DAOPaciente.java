@@ -12,11 +12,9 @@ public class DAOPaciente {
     // Atributo utilizado para receber a conexão criada no método main
     public static Connection conexao = null;
 
-    // Realiza a inserção dos dados no banco de dados
-    // Entrada: Tipo Paciente. Recebe o objeto Paciente
-    // Retorno: Tipo int. Retorna o Id da chave primária criado no banco de dados
+    
     public static int inserir(Paciente paciente) throws SQLException {
-        // Define a consulta SQL
+        
         String sql = "INSERT INTO paciente (nome, cpf, sexo, data_nascimento) VALUES (?, ?, ?, ?)";
 
         // Statement.RETURN_GENERATED_KEYS parâmetro que diz que o banco de dados deve retornar o id da chave primária criada
@@ -30,12 +28,11 @@ public class DAOPaciente {
             // Envia o SQL para o banco de dados
             comando.executeUpdate();
 
-            // Obtém o resultado retornado do banco de dados
-            // getGeneratedKeys irá retornar o id da chave primária que o banco de dados criou
+           
             try (ResultSet idGerado = comando.getGeneratedKeys()) {
-                // Verifica se o banco de dados retornou um id
+                
                 if (idGerado.next()) {
-                    // Retorna o id gerado no banco de dados
+                    
                     return idGerado.getInt(1);
                 }
             }
@@ -46,14 +43,12 @@ public class DAOPaciente {
         throw new SQLException("Erro ao inserir paciente: nenhum ID gerado.");
     }
 
-    // Realiza a consulta de todos os pacientes cadastrados na tabela
-    // Entrada: Nenhum
-    // Retorno: Tipo ArrayList<Paciente>. Retorna uma lista de objetos Pacientes
+    
     public static ArrayList<Paciente> consultarTodosPacientes() throws SQLException {
         // Cria o array list para receber os dados dos pacientes que retornarão do banco de dados
         ArrayList<Paciente> lista = new ArrayList<>();
 
-        // Define o SQL de consulta
+        
         String sql = "SELECT * FROM paciente";
 
         try (Statement comando = conexao.createStatement(); // Cria o comando
@@ -79,9 +74,7 @@ public class DAOPaciente {
         return lista;
     }
 
-    // Realiza a consulta de um paciente pelo ID
-    // Entrada: Tipo int. ID do paciente a ser pesquisado
-    // Retorno: Tipo Paciente. Retorna o objeto Paciente
+   
     public static Paciente consultarPorID(int id) throws SQLException {
         // Inicia o objeto paciente como null
         Paciente paciente = null;
@@ -108,14 +101,12 @@ public class DAOPaciente {
                 );
             }
 
-            // Retorna o objeto paciente
+          
             return paciente;
         }
     }
 
-    // Exclui um paciente pelo ID
-    // Entrada: Tipo int. ID do paciente a ser excluído
-    // Retorno: Tipo int. Retorna a quantidade de linhas excluídas
+  
     public static int excluirPorID(int id) throws SQLException {
         // Define o SQL de exclusão
         String sql = "DELETE FROM paciente WHERE id = ?";
@@ -133,9 +124,7 @@ public class DAOPaciente {
         }
     }
 
-    // Atualiza um paciente pelo ID
-    // Entrada: Tipo Paciente. Objeto paciente a ser atualizado
-    // Retorno: Tipo int. Retorna a quantidade de linhas atualizadas
+  
     public static int atualizarPaciente(Paciente paciente) throws SQLException {
         // Define o SQL
         String sql = "UPDATE paciente SET nome = ?, cpf = ?, sexo = ?, data_nascimento = ? WHERE id = ?";
